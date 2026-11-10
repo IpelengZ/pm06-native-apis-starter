@@ -62,27 +62,53 @@ if (eventInput) {
 
 // --- 4. localStorage ---
 document.getElementById("btn-save-name")?.addEventListener("click", () => {
-  const name = document.getElementById("storage-name")?.value || "";
-  const out = document.getElementById("storage-out");
-  // TODO: localStorage.setItem("labUserName", name) and update out
-  out.textContent = "TODO: save and display name from localStorage";
+    const name = document.getElementById("storage-name")?.value || "";
+    const out = document.getElementById("storage-out");
+
+    localStorage.setItem("labUserName", name);
+    out.textContent = "Name saved: " + name;
 });
 
-// TODO: on page load, read localStorage.getItem("labUserName") into storage-out
 
 // --- 5. WebSocket (echo server) ---
 let ws;
 document.getElementById("btn-ws-send")?.addEventListener("click", () => {
   const msg = document.getElementById("ws-message")?.value || "hello";
   const out = document.getElementById("ws-out");
-  // TODO: ws = new WebSocket("wss://ws.postman-echo.com/raw"); send msg; show reply in out
-  out.textContent = "TODO: WebSocket send/receive";
+  ws = new WebSocket("wss://ws.postman-echo.com/raw");
+
+ws.onopen = () => {
+    ws.send(msg);
+    out.textContent = "Message sent: " + msg;
+};
+
+ws.onmessage = (event) => {
+    out.textContent = "Server reply: " + event.data;
+};
+
+ws.onerror = () => {
+    out.textContent = "WebSocket connection error";
+};
+
+ws.onclose = () => {
+    console.log("WebSocket connection closed");
+};
 });
 
 // --- 6. Web Worker ---
 document.getElementById("btn-worker-run")?.addEventListener("click", () => {
-  const out = document.getElementById("worker-out");
-  out.textContent = "Worker: running…";
-  // TODO: const worker = new Worker("js/worker.js"); postMessage({ n: 10000000 }); onmessage update out
-  out.textContent = "TODO: implement Web Worker";
+    const out = document.getElementById("worker-out");
+    out.textContent = "Worker: running…";
+
+    const worker = new Worker("js/worker.js");
+
+    worker.postMessage({ n: 10000000 });
+
+    worker.onmessage = (event) => {
+    out.textContent = "Worker result: " + event.data.sum;
+};
+
+    worker.onerror = (error) => {
+        out.textContent = "Worker error: " + error.message;
+    };
 });
