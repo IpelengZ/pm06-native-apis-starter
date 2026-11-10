@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PM-06 Native APIs Lab</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Native APIs Lab</h1>
+    <p>Complete each section in <code>js/app.js</code> and screenshot the working result.</p>
+  </header>
+
+  <main>
+    <section id="section-geolocation" class="lab-section">
+      <h2>1. Geolocation</h2>
+      <button type="button" id="btn-geolocation">Get my location</button>
+      <output id="geo-out">Location not requested yet.</output>
+    </section>
+
+    <section id="section-dragdrop" class="lab-section">
+      <h2>2. Drag and drop</h2>
+      <div id="drop-zone">Drop a file or text here</div>
+      <output id="drop-out">Nothing dropped yet.</output>
+    </section>
+
+    <section id="section-events" class="lab-section">
+      <h2>3. Event handling</h2>
+      <input type="text" id="event-input" placeholder="Type here" />
+      <output id="event-out">Events: waiting…</output>
+    </section>
+
+    <section id="section-storage" class="lab-section">
+      <h2>4. Client storage (localStorage)</h2>
+      <input type="text" id="storage-name" placeholder="Your name" />
+      <button type="button" id="btn-save-name">Save name</button>
+      <output id="storage-out">Saved name: (none)</output>
+    </section>
+
+    <section id="section-websocket" class="lab-section">
+      <h2>5. WebSocket</h2>
+      <input type="text" id="ws-message" placeholder="Message to echo server" />
+      <button type="button" id="btn-ws-send">Send</button>
+      <output id="ws-out">WebSocket: disconnected</output>
+    </section>
+
+    <section id="section-worker" class="lab-section">
+      <h2>6. Web Worker</h2>
+      <button type="button" id="btn-worker-run">Run heavy calculation</button>
+      <output id="worker-out">Worker: idle</output>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
